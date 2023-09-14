@@ -2,29 +2,86 @@
 title: "Lab4"
 author: "Bek"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    theme: spacelab
+    highlight: pygments
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+# Tasks
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Task2
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+### Read in the data, copy and paste the last six lines of the data using tail()
 
-```{r cars}
-summary(cars)
+```{r}
+
+spruce.df= read.csv("SPRUCE.csv") #reading in the SPRUCE.csv data into spruce.df
+spruce.tail = tail(spruce.df) 
+spruce.tail #printing out last six lines of SPRUCE.csv data
 ```
 
-## Including Plots
+## Task3 
 
-You can also embed plots, for example:
+### Load the library s20x and make a lowess smoother scatter plot (Height Vs BHDiameter) using trendscatter() (use f=0.5) record the plot.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+library(s20x) #load the library s20x 
+trendscatter(Height~BHDiameter, f=0.5, data = spruce.df) #using trendscatter to print out HEIGHT vs BHDiameter
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+### o	Make a linear model object, spruce.lm=with(spruce.df,lm(Height~BHDiameter))
+
+```{r}
+spruce.lm=with(spruce.df,lm(Height~BHDiameter)) 
+summary(spruce.lm)
+
+```
+
+
+###	Find the residuals using residuals(), put them into an object called height.res
+
+```{r}
+height.res = residuals(spruce.lm)
+```
+
+
+###	Find the fitted values using fitted() and place them in an object called height.fit.
+
+
+```{r}
+height.fit = fitted(spruce.lm)
+
+```
+
+###	Plot the residuals vs fitted values.
+
+```{r}
+plot(height.res~height.fit, bg = "BLUE", pch = 21, cex = 1.2)
+```
+
+
+###	Plot the residuals vs fitted values using trendscatter()
+
+```{r}
+trendscatter(height.res ~ height.fit)
+```
+
+
+### What shape is seen in the plot? Compare it with the curve made with the trendscatter function (second line after Task3). 
+
+
+
+
+
+
+
+
+
