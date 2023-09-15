@@ -137,12 +137,28 @@ plot(quad.lm, which = 1)
 ### Check normality
 
 ```{r}
-normcheck(quad.lm,shapiro.wilk = TRUE)
+normcheck(quad.lm,shapiro.wilk = TRUE) #first graph is qq plot
 ```
 
 
 
 ###	What is the value of the p-value in the Shapiro-Wilk test? What do you conclude?
 
+The p value is 0.684 which is significantly higher than a straight linear models. Therefore, we agree with the null hypothesis. There is not a trend in the residuals vs fitted values for quad.lm, it is distributed normally with the mean closer to 0. Although there are some noise, it is clear that the data are better described by a quadratic model rather than a straight one. One can make comparisons between different fitting models, but can never fully state the data perfectly fits a certain model. 
 
 
+## Task 5
+
+### summarize quad.lm,What is the value of (β_0 ) ̂? 	What is the value of (β_1 ) ̂ 	What is the value of (β_2 ) ̂
+
+```{r}
+summary(quad.lm)
+coef(quad.lm)
+quad.lm$coefficients[1] # is the value of beta zero
+quad.lm$coefficients[2] # is the value of beta one
+quad.lm$coefficients[3] # is the value of beta two
+
+```
+
+
+### 
