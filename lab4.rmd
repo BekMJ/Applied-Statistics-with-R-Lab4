@@ -40,8 +40,8 @@ trendscatter(Height~BHDiameter, f=0.5, data = spruce.df) #using trendscatter to 
 ### o	Make a linear model object, spruce.lm=with(spruce.df,lm(Height~BHDiameter))
 
 ```{r}
-spruce.lm=with(spruce.df,lm(Height~BHDiameter)) 
-summary(spruce.lm)
+spruce.lm=with(spruce.df,lm(Height~BHDiameter)) #creating a linear model from HEIGHT~BHDiameter
+summary(spruce.lm) #printing out the summary
 
 ```
 
@@ -49,7 +49,7 @@ summary(spruce.lm)
 ###	Find the residuals using residuals(), put them into an object called height.res
 
 ```{r}
-height.res = residuals(spruce.lm)
+height.res = residuals(spruce.lm) #residuals() to assign the residuals to height.res object for further use
 ```
 
 
@@ -57,14 +57,14 @@ height.res = residuals(spruce.lm)
 
 
 ```{r}
-height.fit = fitted(spruce.lm)
+height.fit = fitted(spruce.lm) #fitted() method to assign fitted values to height.fit object for further use
 
 ```
 
 ###	Plot the residuals vs fitted values.
 
 ```{r}
-plot(height.res~height.fit, bg = "BLUE", pch = 21, cex = 1.2)
+plot(height.res~height.fit, bg = "BLUE", pch = 21, cex = 1.2) #uing plot method to plot residuals against fitted values, blue dot and 1.2 more size
 ```
 
 
@@ -77,11 +77,72 @@ trendscatter(height.res ~ height.fit)
 
 ### What shape is seen in the plot? Compare it with the curve made with the trendscatter function (second line after Task3). 
 
+the shape resembles that of a quadratic function(parabola), it has a resemblance to the curve made previously for the first half
+
+
+###	Using the plot() function and spruce.lm, make the residual plot.
+
+```{r}
+plot(spruce.lm, which =1)
+```
+
+
+### Check normality using the s20x function normcheck(). Please note that you may need to add an additional option to show the Shapiro-Wilk test (use ?normcheck )
+
+```{r}
+normcheck(spruce.lm,shapiro.wilk = TRUE)
+```
+
+### What is the pvalue for the Shapiro-Wilk test? What is the NULL hypothesis in this case?
+
+the p value equals 0.29 which is greater than 0.05, meaning the null hypothesis cannot be rejected.
+
+###	Write a sentence outlining your conclusions concerning the validity of applying the straight line to this data set.
+
+Residuals vs fitted shows a quadratic fitted curve when plotted meanwhile it should have been in normal distribution with a mean of 0 ranging from -1 to 1. Therefore, straight line is not a good representation of the model.
+
+## Task4
+
+### Fit a quadratic to the points using the appropriate formula inside the lm() function and placing the output in the object quad.lm.
+
+```{r}
+quad.lm=lm(Height~BHDiameter + I(BHDiameter^2),data=spruce.df)
+summary(quad.lm)
+
+```
+
+
+### Make a fresh scatter plot of Height Vs BHDiameter and add the quadratic curve to it.
+
+
+```{r}
+plot(Height~BHDiameter, bg = "Blue", data = spruce.df, pch =21)
+myplot = function(x) {
+  quad.lm$coef[1]+quad.lm$coef[2]*x+quad.lm$coef[3]*x^2
+}
+
+curve(myplot, lwd = 2, col ="Red", add = TRUE)
+```
+
+
+### Make quad.fit, a vector of fitted values and make a plot of the residuals vs fitted values, use plot() and quad.lm
+
+```{r}
+quad.fit = fitted(quad.lm)
+plot(quad.lm, which = 1)
+
+```
+
+
+### Check normality
+
+```{r}
+normcheck(quad.lm,shapiro.wilk = TRUE)
+```
 
 
 
-
-
+###	What is the value of the p-value in the Shapiro-Wilk test? What do you conclude?
 
 
 
