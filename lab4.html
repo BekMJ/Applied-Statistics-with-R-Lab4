@@ -11,7 +11,7 @@
 
 <meta name="author" content="Bek" />
 
-<meta name="date" content="2023-09-15" />
+<meta name="date" content="2023-09-16" />
 
 <title>Lab4</title>
 
@@ -1577,7 +1577,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Lab4</h1>
 <h4 class="author">Bek</h4>
-<h4 class="date">2023-09-15</h4>
+<h4 class="date">2023-09-16</h4>
 
 </div>
 
@@ -1790,8 +1790,17 @@ of (β_1 ) ̂ What is the value of (β_2 ) ̂</h3>
 <pre><code>## I(BHDiameter^2) 
 ##     -0.02745726</code></pre>
 </div>
-<div id="section" class="section level3">
-<h3></h3>
+<div id="o-write-down-the-equation-of-the-fitted-line." class="section level3">
+<h3>o Write down the equation of the fitted line.</h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">ciReg</span>(quad.lm)</span></code></pre></div>
+<pre><code>##                 95 % C.I.lower    95 % C.I.upper
+## (Intercept)           -3.62525           5.34705
+## BHDiameter             0.97361           1.96558
+## I(BHDiameter^2)       -0.04096          -0.01396</code></pre>
+</div>
+<div id="o-predict-the-height-of-spruce-when-the-diameter-is-15-18-and-20cm-use-predict" class="section level3">
+<h3>o Predict the Height of spruce when the Diameter is 15, 18 and 20cm
+(use predict())</h3>
 </div>
 </div>
 </div>

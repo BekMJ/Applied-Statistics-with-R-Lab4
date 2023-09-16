@@ -161,4 +161,19 @@ quad.lm$coefficients[3] # is the value of beta two
 ```
 
 
-### 
+### o	Write down the equation of the fitted line.
+
+
+```{r}
+ciReg(quad.lm)
+```
+
+### o	Predict the Height of spruce when the Diameter is 15, 18 and 20cm (use predict())
+
+
+```{r}
+
+```
+
+
+
